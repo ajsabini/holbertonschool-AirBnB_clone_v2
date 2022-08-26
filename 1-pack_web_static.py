@@ -1,4 +1,4 @@
-#!/usr/bi/python3
+#!/usr/bin/python3
 # create .tgz(compress) before seding
 
 from fabric.api import local
