@@ -14,6 +14,6 @@ def do_pack():
 
     try:
         local("tar -cvzf " + fecha + " web_static")
-        return(nomre_arch)
+        return(nombre_arch)
     except Exception:
         return None
