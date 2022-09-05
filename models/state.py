@@ -6,13 +6,15 @@ from sqlalchemy.orm import relationship
 import models
 import os
 
+
 class State(BaseModel, Base):
     """ State class """
-    __tablename__ = "states"
 
-    name = Column(String(128), nullable=False)
-
-    if os.getenv("HBNB_TYPE_STORAGE=db") != "db":
+    if getenv('HBNB_TYPE_STORAGE') == 'db':
+        ___tablename__ = "states"
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", cascade="all,delete", backref="state")
+    elif getenv('HBNB_TYPE_STORAGE') == 'sf':
         @property
         def cities(self):
             citylist = []
@@ -21,4 +23,3 @@ class State(BaseModel, Base):
                 if value.state_id == self.id:
                     citylist.append(value)
             return citylist
-    cities = relationship("City", cascade = "all,delete", backref="state")
