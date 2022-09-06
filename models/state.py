@@ -16,7 +16,7 @@ class State(BaseModel, Base):
         cities = relationship("City", cascade="all,delete", backref="state")
     elif os.getenv('HBNB_TYPE_STORAGE') == 'fs':
         name = ''
-        
+ 
         @property
         def cities(self):
             citylist = []
