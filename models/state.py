@@ -10,11 +10,13 @@ import os
 class State(BaseModel, Base):
     """ State class """
 
-    if getenv('HBNB_TYPE_STORAGE') == 'db':
+    if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         ___tablename__ = "states"
         name = Column(String(128), nullable=False)
         cities = relationship("City", cascade="all,delete", backref="state")
-    elif getenv('HBNB_TYPE_STORAGE') == 'sf':
+    elif os.getenv('HBNB_TYPE_STORAGE') == 'fs':
+        name = ''
+        
         @property
         def cities(self):
             citylist = []

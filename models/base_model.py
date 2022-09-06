@@ -5,9 +5,13 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime
 import datetime
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
-Base = declarative_base()
-
+if os.getenv('HBNB_TYPE_STORAGE') == 'db':
+    Base = declarative_base()
+else:
+    class Base:
+        pass
 
 class BaseModel:
     """A base class for all hbnb models"""
